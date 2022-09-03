@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MenuLink, FindAStore } from './';
+
+import { useAppSelector } from '../app/hooks';
+import {
+  MenuLink,
+  FindAStore,
+  LogoutButton,
+  SignInButton,
+  SignUpButton,
+} from './';
 
 const variants = {
   open: {
@@ -30,6 +38,8 @@ const variants2 = {
 
 const Navigation = ({ toggle }: { toggle: () => void }) => {
   const [showMenuCategories, setShowMenuCategories] = useState(false);
+
+  const { user } = useAppSelector((state) => state.user);
 
   return (
     <>
@@ -84,10 +94,16 @@ const Navigation = ({ toggle }: { toggle: () => void }) => {
           <MenuLink link="Rewards" />
           <MenuLink link="Gift Cards" />
           <motion.hr variants={variants2} />
-          <motion.div
-            className="navigation__buttons"
-            variants={variants2}
-          ></motion.div>
+          <motion.div className="navigation__buttons" variants={variants2}>
+            {user ? (
+              <LogoutButton />
+            ) : (
+              <>
+                <SignInButton />
+                <SignUpButton />
+              </>
+            )}
+          </motion.div>
           <motion.div variants={variants2}>
             <FindAStore />
           </motion.div>

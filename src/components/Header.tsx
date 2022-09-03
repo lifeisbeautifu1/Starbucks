@@ -1,11 +1,20 @@
 import { Link } from 'react-router-dom';
-import { Example, FindAStore } from './';
+
+import { useAppSelector } from '../app/hooks';
+import {
+  Example,
+  FindAStore,
+  SignInButton,
+  LogoutButton,
+  SignUpButton,
+} from './';
 
 interface HeaderProps {
   menuPage?: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({ menuPage }) => {
+  const { user } = useAppSelector((state) => state.user);
   return (
     <div
       className={`h-[101px] shadow-custom flex items-center justify-between px-10 z-[2] bg-white ${
@@ -43,6 +52,16 @@ const Header: React.FC<HeaderProps> = ({ menuPage }) => {
         <Example />
         <div className="hidden md:block">
           <FindAStore />
+          {user ? (
+            <>
+              <LogoutButton />
+            </>
+          ) : (
+            <>
+              <SignInButton />
+              <SignUpButton />
+            </>
+          )}
         </div>
       </div>
     </div>
