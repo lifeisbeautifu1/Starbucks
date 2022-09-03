@@ -8,3 +8,6 @@ export { default as Navigation } from './Navigation';
 export { default as SignInButton } from './SignInButton';
 export { default as SignUpButton } from './SignUpButton';
 export { default as LogoutButton } from './LogoutButton';
+export { default as Heading } from './Heading';
+export { default as Featured } from './Featured';
+export { default as Info } from './Info';

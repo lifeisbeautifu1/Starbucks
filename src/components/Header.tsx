@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ menuPage }) => {
       </div>
       <div className="flex items-center gap-5">
         <Example />
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-5">
           <FindAStore />
           {user ? (
             <>
