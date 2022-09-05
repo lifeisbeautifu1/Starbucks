@@ -11,4 +11,6 @@ export { default as LogoutButton } from './LogoutButton';
 export { default as Heading } from './Heading';
 export { default as Featured } from './Featured';
 export { default as Info } from './Info';
+export { default as FooterSecondary } from './FooterSecondary';
+export { default as FormSubmit } from './FormSubmit';
 export { ContentPlaceholder } from './ContentPlaceholder';
