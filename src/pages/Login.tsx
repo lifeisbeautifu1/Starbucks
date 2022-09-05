@@ -1,7 +1,12 @@
 import { TextField } from '@material-ui/core';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { auth } from '../firebase';
 import { Link } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
+import { useAppDispatch } from '../app/hooks';
+import { login } from '../features/user/user';
 import { FormSubmit, FooterSecondary } from '../components';
 
 function LoginScreen() {
@@ -19,16 +24,37 @@ function LoginScreen() {
     required: true,
   });
 
-  const onSubmit = ({
+  const dispatch = useAppDispatch();
+
+  const onSubmit = async ({
     email,
     password,
   }: {
-    email: string;
-    password: string;
-  }) => {};
+    email?: string;
+    password?: string;
+  }) => {
+    if (email && password) {
+      try {
+        const { user } = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        dispatch(
+          login({
+            displayName: user.displayName,
+            email: user.email,
+            uid: user.uid,
+          })
+        );
+      } catch (error: any) {
+        alert(error.message);
+      }
+    }
+  };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row font-primary">
       <div
         className="relative flex items-center justify-center w-full h-[150px] gap-[10px] md:fixed
       md:top-0 md:bottom-0 md:left-0 overflow-hidden md:w-[40vw]
@@ -52,10 +78,13 @@ function LoginScreen() {
         className="overflow-scroll flex flex-col items-center justify-center
        ml-0 md:ml-[40vw] flex-1 bg-[#f7f7f7] py-5 px-0"
       >
-        <form className="flex flex-col min-w-[300px] min-h-[420px] gap-5 pb-10 px-0 pt-[60px]">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col min-w-[300px] min-h-[420px] gap-5 pb-10 px-0 pt-[60px]"
+        >
           <div className="relative">
             <TextField
-              name="email"
+              // name="email"
               label="Email Address"
               type="email"
               InputLabelProps={{
@@ -63,7 +92,8 @@ function LoginScreen() {
               }}
               InputProps={{ style: { fontWeight: '800' } }}
               className="w-full"
-              inputRef={email.ref}
+              {...email}
+              // inputRef={email.ref}
             />
             {errors.email && (
               <div className="mt-[5px] flex items-center gap-[5px] text-xs">
@@ -85,16 +115,14 @@ function LoginScreen() {
                 <span>Enter an email.</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6 text-[#e75b52] absolute right-0 top-0 translate-y-[100%]"
+                  fill="currentColor"
+                  className="w-6 h-6 text-[#e75b52] absolute right-0 top-0 translate-y-[80%]"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"
+                    fillRule="evenodd"
+                    d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                    clipRule="evenodd"
                   />
                 </svg>
               </div>
@@ -102,7 +130,7 @@ function LoginScreen() {
           </div>
           <div className="relative">
             <TextField
-              name="password"
+              // name="password"
               label="Password"
               type={passwordShown ? 'text' : 'password'}
               InputLabelProps={{
@@ -110,7 +138,8 @@ function LoginScreen() {
               }}
               InputProps={{ style: { fontWeight: '800' } }}
               className="w-full"
-              inputRef={password.ref}
+              {...password}
+              // inputRef={password}
             />
             {passwordShown ? (
               <svg
@@ -171,16 +200,14 @@ function LoginScreen() {
                 <span>Enter an password.</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6 text-[#e75b52] absolute right-0 top-0 translate-y-[100%]"
+                  fill="currentColor"
+                  className="w-6 h-6 text-[#e75b52] absolute right-0 top-0 translate-y-[80%]"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z"
+                    fillRule="evenodd"
+                    d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                    clipRule="evenodd"
                   />
                 </svg>
               </div>

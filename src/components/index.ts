@@ -13,4 +13,5 @@ export { default as Featured } from './Featured';
 export { default as Info } from './Info';
 export { default as FooterSecondary } from './FooterSecondary';
 export { default as FormSubmit } from './FormSubmit';
+export { default as SignupForm } from './SignupForm';
 export { ContentPlaceholder } from './ContentPlaceholder';

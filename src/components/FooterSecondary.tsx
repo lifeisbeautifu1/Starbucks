@@ -2,19 +2,24 @@ import { Link } from 'react-router-dom';
 import FindAStore from './FindAStore';
 
 interface FooterSecondaryProps {
-  paddingLeft: number;
+  paddingLeft?: number;
   flexDirection: 'row' | 'column';
+  alignItems?: 'center';
 }
 
 const FooterSecondary: React.FC<FooterSecondaryProps> = ({
   paddingLeft,
   flexDirection,
+  alignItems,
 }) => {
   return (
     <div
       className="w-full p-[30px]
       pb-[60px] flex flex-row ml-5 sm:ml-0 sm:flex-col gap-[30px] border-t border-black/10"
-      style={{ paddingLeft: `${paddingLeft * 2}px` }}
+      style={{
+        alignItems,
+        paddingLeft: `${paddingLeft ? paddingLeft * 2 : 0}px`,
+      }}
     >
       <div
         className="flex flex-col gap-[30px]"

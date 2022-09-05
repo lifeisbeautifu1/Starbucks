@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { IUser } from '../../interfaces';
+
 export interface UserState {
-  user: null;
+  user: null | IUser;
 }
 
 const initialState: UserState = {
@@ -15,7 +17,7 @@ export const userSlice = createSlice({
     login: (state, action) => {
       state.user = action.payload;
     },
-    logout: (state, action) => {
+    logout: (state) => {
       state.user = null;
     },
   },
