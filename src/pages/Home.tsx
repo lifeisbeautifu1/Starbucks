@@ -5,7 +5,7 @@ import { Header, Footer, Heading, Featured, Info } from '../components';
 
 const Home = () => {
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden font-primary">
       <Header />
       <div>
         <Fade>
@@ -97,7 +97,7 @@ const Home = () => {
           <Heading heading="MORE TO DISCOVER" />
         </Fade>
         <Fade>
-          <div className="homeScreen__discover">
+          <div className="flex flex-col md:flex-row gap-5">
             <Info
               title="Order and pick up. Easy as that."
               image="https://content-prod-live.cert.starbucks.com/binary/v2/asset/137-67828.jpg"

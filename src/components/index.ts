@@ -11,3 +11,4 @@ export { default as LogoutButton } from './LogoutButton';
 export { default as Heading } from './Heading';
 export { default as Featured } from './Featured';
 export { default as Info } from './Info';
+export { ContentPlaceholder } from './ContentPlaceholder';
