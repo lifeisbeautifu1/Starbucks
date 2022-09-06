@@ -2,9 +2,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch } from './app/hooks';
+import { Fade } from 'react-awesome-reveal';
 
-import { Header } from './components';
-import { Home, Login, SignUp, Menu } from './pages';
+import { Header, Footer } from './components';
+import { Home, Login, SignUp, Menu, FeaturedPage } from './pages';
 import { login, logout } from './features/user/user';
 import { auth } from './firebase';
 import { useAppSelector } from './app/hooks';
@@ -48,6 +49,22 @@ function App() {
             <>
               <Header menuPage />
               <Menu />
+            </>
+          ) : (
+            <Login />
+          )
+        }
+      />
+      <Route
+        path="/menu/featured"
+        element={
+          user ? (
+            <>
+              <Header />
+              <FeaturedPage />
+              <Fade>
+                <Footer />
+              </Fade>
             </>
           ) : (
             <Login />

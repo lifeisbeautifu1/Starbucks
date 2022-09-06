@@ -19,7 +19,7 @@ const Info: React.FC<InfoProps> = ({
 }) => {
   return (
     <div
-      className="flex w-full md:w-[49%] gap-5 flex-col
+      className="flex w-full md:w-[48.5%] gap-5 flex-col
     justify-center items-center pb-[10px] relative"
       style={{ color, background }}
     >
@@ -32,10 +32,10 @@ const Info: React.FC<InfoProps> = ({
         <h4 className="text-[22px] font-semibold leading-[1.6]">{title}</h4>
         <h6 className="text-[17px] font-semibold leading-[1.6]">{info}</h6>
         <Link
-          className="bg-none border border-black rounded-[50px]
+          // style={{ color }}
+          className={`bg-none border border-gray-400 rounded-[50px]
         py-[7px] px-4 font-bold leading-[1.2] text-center transition duration-200
-        mx-auto hover:bg-[rgb(30,57,50)]/10"
-          style={{ color }}
+        mx-auto hover:bg-[rgb(30,57,50)]/10`}
           to="/"
         >
           {link}

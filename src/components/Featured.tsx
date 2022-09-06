@@ -37,7 +37,7 @@ const Featured: React.FC<FeaturedProps> = ({
         <h4 className="leading-[1.6] text-xl font-semibold">{info}</h4>
         <Link
           className="inline-block bg-[#1e3932] text-white
-        border border-black rounded-[50px]
+        border  rounded-[50px]
         py-[7px] px-4 font-semibold leading-[1.2] text-center transition duration-200
         mx-auto hover:bg-[rgb(30,57,50)]/90"
           to={path}
