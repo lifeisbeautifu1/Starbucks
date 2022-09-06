@@ -1,15 +1,16 @@
 interface FormSubmitProps {
   name: string;
   type: 'submit';
+  className?: string;
 }
 
-const FormSubmit: React.FC<FormSubmitProps> = ({ name, type }) => {
+const FormSubmit: React.FC<FormSubmitProps> = ({ name, type, className }) => {
   return (
     <button
-      className="
-    relative
+      className={`
+    
     inline-block
-    z-10
+    
     py-[18px] px-[24px]
     bg-[#00a862]
     shadow-xl
@@ -25,7 +26,7 @@ const FormSubmit: React.FC<FormSubmitProps> = ({ name, type }) => {
     duration-200
     ease-in-out
     ml-auto
-    cursor-pointer"
+    cursor-pointer ${className}`}
       type={type}
     >
       {name}
