@@ -14,4 +14,7 @@ export { default as Info } from './Info';
 export { default as FooterSecondary } from './FooterSecondary';
 export { default as FormSubmit } from './FormSubmit';
 export { default as SignupForm } from './SignupForm';
+export { default as MenuHeader } from './MenuHeader';
+export { default as MenuItem } from './MenuItem';
+export { default as MenuList } from './MenuList';
 export { ContentPlaceholder } from './ContentPlaceholder';

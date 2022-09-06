@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ menuPage }) => {
   return (
     <div
       className={`h-[101px] shadow-custom flex items-center justify-between px-10 z-[2] bg-white ${
-        menuPage && 'inherit md:fixed left-0 top-0 w-[95%]'
+        menuPage && 'inherit md:fixed left-0 top-0 w-full'
       }`}
     >
       <div className="flex items-center gap-5">

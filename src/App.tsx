@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch } from './app/hooks';
 
-import { Home, Login, SignUp } from './pages';
+import { Header } from './components';
+import { Home, Login, SignUp, Menu } from './pages';
 import { login, logout } from './features/user/user';
 import { auth } from './firebase';
 import { useAppSelector } from './app/hooks';
@@ -39,6 +40,19 @@ function App() {
       <Route
         path="/account/create"
         element={user ? <Navigate to="/menu" /> : <SignUp />}
+      />
+      <Route
+        path="/menu"
+        element={
+          user ? (
+            <>
+              <Header menuPage />
+              <Menu />
+            </>
+          ) : (
+            <Login />
+          )
+        }
       />
     </Routes>
   );
